@@ -4,9 +4,14 @@
 FROM ubuntu:14.04
 MAINTAINER Leon <leon860516@gmail.com>
 
+#切换源到阿里云aliyun
 RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak
 COPY sources.list /etc/apt/sources.list
 
+#取消root密码
+RUN echo "opbuild ALL=NOPASSWD: ALL" > /etc/sudoers.d/opbuild
+
+#安装基础环境并清理缓存
 RUN apt-get update && \
 	apt-get install -y gcc g++ binutils patch bzip2 flex bison make \
                        autoconf gettext texinfo unzip sharutils git \
@@ -15,12 +20,14 @@ RUN apt-get update && \
                        lib32gcc1 libc6-dev-i386 vim screen && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+#创建用户目录
 RUN mkdir -p /home/opbuild/openwrtworkspace
-
+#添加用户opbuild
 RUN useradd opbuild && rsync -a /etc/skel/ /home/opbuild/
+#修正目录所有者
 RUN chown -R opbuild:opbuild /home/opbuild
-
+#挂载目录到宿主机
 VOLUME ["/home/opbuild/openwrtworkspace"]
-
+#切换用户&切换工作目录
 USER opbuild
 WORKDIR /home/opbuild/openwrtworkspace
