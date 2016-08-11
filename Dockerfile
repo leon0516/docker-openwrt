@@ -8,7 +8,7 @@ RUN apt-get update && \
                        autoconf gettext texinfo unzip sharutils git \
                        libncurses5-dev ncurses-term zlib1g-dev gawk \
                        libssl-dev python wget subversion xz-utils \
-                       lib32gcc1 libc6-dev-i386 vim  && \
+                       lib32gcc1 libc6-dev-i386 vim screen && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak
