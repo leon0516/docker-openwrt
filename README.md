@@ -1,6 +1,7 @@
 docker-openwrt
 ===
-[![GitHub release](https://img.shields.io/github/release/leon0516/docker-openwrt.svg?maxAge=2592000)](https://github.com/leon0516/docker-openwrt)  [![AUR](https://img.shields.io/aur/license/leon0516.svg?maxAge=2592000)](https://github.com/leon0516/docker-openwrt)  
+[![GitHub release](https://img.shields.io/github/release/leon0516/docker-openwrt.svg)](https://github.com/leon0516/docker-openwrt)
+[![license](https://img.shields.io/github/license/leon0516/docker-openwrt.svg)](https://github.com/leon0516/docker-openwrt)  
 
 OpenWrt固件编程基础环境Docker镜像
 

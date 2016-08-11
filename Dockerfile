@@ -26,8 +26,6 @@ RUN mkdir -p /home/opbuild/openwrtworkspace
 RUN useradd opbuild && rsync -a /etc/skel/ /home/opbuild/
 #修正目录所有者
 RUN chown -R opbuild:opbuild /home/opbuild
-#挂载目录到宿主机
-VOLUME ["/home/opbuild/openwrtworkspace"]
 #切换用户&切换工作目录
 USER opbuild
 WORKDIR /home/opbuild/openwrtworkspace
