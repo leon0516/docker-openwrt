@@ -21,11 +21,13 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #创建用户目录
-RUN mkdir -p /home/opbuild/openwrtworkspace
+RUN mkdir -p /home/opbuild/openwrtworkspace && mkdir -p /home/opbuild/exchangefolder
 #添加用户opbuild
 RUN useradd opbuild && rsync -a /etc/skel/ /home/opbuild/
 #修正目录所有者
 RUN chown -R opbuild:opbuild /home/opbuild
+#挂载交换目录用于和宿主机交换文件
+VOLUME ["/home/opbuild/exchangefolder"]
 #切换用户&切换工作目录
 USER opbuild
 WORKDIR /home/opbuild/openwrtworkspace
