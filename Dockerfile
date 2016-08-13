@@ -28,6 +28,11 @@ RUN useradd opbuild && rsync -a /etc/skel/ /home/opbuild/
 RUN chown -R opbuild:opbuild /home/opbuild
 #挂载交换目录用于和宿主机交换文件
 VOLUME ["/home/opbuild/exchangefolder"]
+RUN sudo -iu opbuild git clone -b personal https://git.coding.net/leon0516/openwrt-15.05.git /home/opbuild/openwrtworkspace/openwrt
+RUN sudo -iu opbuild ./home/opbuild/openwrtworkspace/openwrt/scripts/feeds update -a
+RUN sudo -iu opbuild ./home/opbuild/openwrtworkspace/openwrt/scripts/feeds install -a
 #切换用户&切换工作目录
 USER opbuild
-WORKDIR /home/opbuild/openwrtworkspace
+WORKDIR /home/opbuild/openwrtworkspace/openwrt
+RUN make -j 5 V=s
+
