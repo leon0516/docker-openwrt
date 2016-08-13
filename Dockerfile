@@ -35,4 +35,5 @@ RUN git clone --branch v15.05.1 https://github.com/openwrt/openwrt.git openwrt
 WORKDIR /home/opbuild/openwrtworkspace/openwrt
 RUN ./scripts/feeds update -a
 RUN ./scripts/feeds install -a
+RUN mkdir dl && cd dl && wget https://releases.linaro.org/14.04/components/toolchain/gcc-linaro/4.8/gcc-linaro-4.8-2014.04.tar.xz
 RUN make -j20 download V=s
