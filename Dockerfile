@@ -31,3 +31,8 @@ VOLUME ["/home/opbuild/exchangefolder"]
 #切换用户&切换工作目录
 USER opbuild
 WORKDIR /home/opbuild/openwrtworkspace
+RUN git clone --branch v15.05.1 https://github.com/openwrt/openwrt.git openwrt
+WORKDIR /home/opbuild/openwrtworkspace/openwrt
+RUN ./scripts/feeds update -a
+RUN ./scripts/feeds install -a
+RUN make -j20 download V=s
