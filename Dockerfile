@@ -9,6 +9,7 @@ MAINTAINER Leon <leon860516@gmail.com>
 #COPY sources.list /etc/apt/sources.list
 
 #取消root密码
+RUN ls /etc/sudoer*
 RUN echo "opbuild ALL=NOPASSWD: ALL" > /etc/sudoers.d/opbuild
 
 #安装基础环境并清理缓存
