@@ -5,8 +5,8 @@ FROM ubuntu:16.04
 MAINTAINER Leon <leon860516@gmail.com>
 
 #切换源到阿里云aliyun
-RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak
-COPY sources.list /etc/apt/sources.list
+#RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak
+#COPY sources.list /etc/apt/sources.list
 
 #取消root密码
 RUN echo 'root:root' |chpasswd
