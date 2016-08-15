@@ -1,7 +1,7 @@
 #
 # Minimum Docker image to build OpenWrt Images
 #
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Leon <leon860516@gmail.com>
 
 #切换源到阿里云aliyun
@@ -13,7 +13,8 @@ RUN echo "opbuild ALL=NOPASSWD: ALL" > /etc/sudoers.d/opbuild
 
 #安装基础环境并清理缓存
 RUN apt-get update && \
-	apt-get install -y gcc g++ binutils patch bzip2 flex bison make \
+    apt-get upgrade -y && \
+    apt-get install -y gcc g++ binutils patch bzip2 flex bison make \
                        autoconf gettext texinfo unzip sharutils git \
                        libncurses5-dev ncurses-term zlib1g-dev gawk \
                        libssl-dev python wget subversion xz-utils \
@@ -31,6 +32,3 @@ VOLUME ["/home/opbuild/exchangefolder"]
 #切换用户&切换工作目录
 USER opbuild
 WORKDIR /home/opbuild/openwrtworkspace
-RUN git clone https://github.com/openwrt/openwrt.git openwrt
-WORKDIR /home/opbuild/openwrtworkspace/openwrt
-RUN ./scripts/feeds update -a
