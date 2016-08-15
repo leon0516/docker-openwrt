@@ -9,8 +9,8 @@ MAINTAINER Leon <leon860516@gmail.com>
 #COPY sources.list /etc/apt/sources.list
 
 #取消root密码
-RUN ls /etc/
-RUN echo "opbuild ALL=NOPASSWD: ALL" > /etc/sudoers.d/opbuild
+RUN echo 'root:root' |chpasswd
+RUN echo "sudo  ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers
 
 #安装基础环境并清理缓存
 RUN apt-get update && \
